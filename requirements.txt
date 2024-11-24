@@ -1,8 +1,8 @@
-streamlit==1.25.0          # Phiên bản Streamlit mới nhất
-numpy==1.23.5             # Thư viện tính toán số học
-tensorflow==2.16.2        # TensorFlow, kiểm tra phiên bản phù hợp với CUDA/cuDNN
-Pillow==10.0.0            # Xử lý ảnh
-streamlit-option-menu==0.3.2  # Tùy chỉnh menu trong Streamlit
-streamlit-webrtc==0.44.0  # Xử lý streaming video/audio trong Streamlit
-torch==2.0.1              # PyTorch
-torchvision==0.15.2       # Thư viện liên kết với PyTorch để xử lý hình ảnh
+streamlit        
+numpy           
+tensorflow       
+Pillow          
+streamlit-option-menu  
+streamlit-webrtc  
+torch             
+torchvision    

@@ -51,6 +51,18 @@ disease_labels = [
     "Sheath Blight"
 ]
 
+# --- Dữ liệu các biện pháp khắc phục bệnh ---
+disease_remedies = {
+    "Bacterial Leaf Blight": "Sử dụng các giống kháng bệnh và phun thuốc gốc đồng như Copper Oxychloride.",
+    "Brown Spot": "Phun thuốc trừ bệnh chứa Mancozeb hoặc Carbendazim. Bón phân cân đối.",
+    "Healthy Rice Leaf": "Không cần xử lý. Duy trì chăm sóc tốt để phòng bệnh.",
+    "Leaf Blast": "Sử dụng thuốc trừ bệnh như Tricyclazole. Bón phân cân đối để tăng sức đề kháng.",
+    "Leaf Scald": "Giảm lượng phân đạm và sử dụng thuốc bảo vệ thực vật phù hợp.",
+    "Narrow Brown Leaf Spot": "Phun Mancozeb hoặc Zineb. Tránh tưới nước quá mức.",
+    "Rice Hispa": "Dùng thuốc trừ sâu chứa Chlorpyrifos hoặc Quinalphos.",
+    "Sheath Blight": "Phun thuốc Validamycin hoặc Hexaconazole. Duy trì mật độ gieo trồng hợp lý.",
+}
+
 # --- Hàm tiền xử lý ảnh ---
 def preprocess_image(image, target_size=(224, 224)):
     transform = transforms.Compose([
@@ -133,10 +145,15 @@ if menu_option == "Tải lên ảnh":
             max_probability = torch.max(prediction).item()
             predicted_label = disease_labels[torch.argmax(prediction).item()]
 
-            # Kiểm tra xác suất dự đoán
+            # Hiển thị kết quả và biện pháp khắc phục
             if max_probability >= 0.5:
                 st.markdown("<h3 style='color: green;'>🌟 Kết quả dự đoán:</h3>", unsafe_allow_html=True)
                 st.success(f"{predicted_label}: {max_probability * 100:.2f}%")
+
+                # Hiển thị biện pháp khắc phục
+                remedy = disease_remedies.get(predicted_label, "Không có thông tin về biện pháp khắc phục bệnh này.")
+                st.markdown("<h3 style='color: blue;'>💡 Biện pháp khắc phục:</h3>", unsafe_allow_html=True)
+                st.success(remedy)
 
                 # Lưu ảnh vào thư mục tương ứng với bệnh
                 save_image(uploaded_image.getvalue(), predicted_label)
